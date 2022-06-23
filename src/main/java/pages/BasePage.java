@@ -19,7 +19,7 @@ public class BasePage {
 
     public void setDriver(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 3);
+        wait = new WebDriverWait(driver, 10);
     }
 
     public List<LogEntry> getLogs(){
