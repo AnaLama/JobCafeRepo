@@ -22,40 +22,40 @@ public class BasePage {
         wait = new WebDriverWait(driver, 10);
     }
 
-    public List<LogEntry> getLogs(){
+    public List<LogEntry> getLogs() {
         LogEntries entries = driver.manage().logs().get(LogType.BROWSER);
-        List<LogEntry> logs = entries.getAll();
-        return logs;
+        return entries.getAll();
     }
-    public void printLogs(List<LogEntry> logs){
-        for (LogEntry e: logs){
+
+    public void printLogs(List<LogEntry> logs) {
+        for (LogEntry e : logs) {
             System.out.println("Message" + e.getMessage());
             System.out.println("Level" + e.getLevel());
         }
     }
-    public boolean isElementExists (String xpath){
-      try {
-          driver.findElement(By.xpath(xpath));
 
-          return true;
-      } catch (Exception error){
+    public boolean isElementExists(String xpath) {
+        try {
+            driver.findElement(By.xpath(xpath));
 
-          return false;
-      }
+            return true;
+        } catch (Exception error) {
+
+            return false;
+        }
     }
-    public WebElement findElementByXpath (String xpath){
-      return  driver.findElement(By.xpath(xpath));
+
+    public WebElement findElementByXpath(String xpath) {
+        return driver.findElement(By.xpath(xpath));
     }
+
     public void takeElementScreenshot(String name, String xpath) throws IOException {
         WebElement logo = findElementByXpath(xpath);
         File file = logo.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File("Screenshots/" +name + ".png"));
+        FileUtils.copyFile(file, new File("Screenshots/" + name + ".png"));
     }
 
     protected void sendTextToElementByXpath(String xpath, String text) {
         findElementByXpath(xpath).sendKeys(text);
     }
-//    public String getCurrentUrl(){
-//       return driver.getCurrentUrl();
-//    }
 }

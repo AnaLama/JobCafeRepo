@@ -7,11 +7,10 @@ import pages.BasePage;
 
 public class BaseTest {
     private static WebDriver driver;
-    private static BasePage page;
 
     @BeforeAll
     public static void setupMain() {
-        page = new BasePage();
+        BasePage page = new BasePage();
         driver = SharedDriver.getDriver(SharedDriver.Browser.CHROME);
         page.setDriver(driver);
     }
